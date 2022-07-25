@@ -1,6 +1,9 @@
+from dataclasses import field, fields
 from django import forms
+from django.forms import ModelForm
+from .models import ToDoList
 
-class CreateNewList(forms.Form):
-    date = forms.DateField(label="Tanggal", widget=forms.SelectDateWidget, input_formats=["%Y-%m-%d"])
-    max = forms.IntegerField(label="Max")
-    min = forms.IntegerField(label="Min")
+class CreateNewList(ModelForm):
+    class Meta:
+        model = ToDoList
+        fields = ['date', 'max', 'min']

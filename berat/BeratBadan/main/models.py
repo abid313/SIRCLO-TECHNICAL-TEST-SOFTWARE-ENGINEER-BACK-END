@@ -1,3 +1,4 @@
+from numbers import Integral
 from django.db import models
 
 # Create your models here.
@@ -8,4 +9,4 @@ class ToDoList(models.Model):
     diff = models.IntegerField()
     
     def __str__(self):
-        return self.date, self.max, self.min, self.diff
+        return self.date, self.max, self.min

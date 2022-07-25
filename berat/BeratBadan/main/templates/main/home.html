@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+
+    {% if datas %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Max</th>
+                    <th scope="col">Min</th>
+                    <th scope="col">Perbedaan</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for data in datas %}
+                <tr>
+                    <th scope="row"><a href="{% url 'index' data.id %}">{{data.id}}</a></th>
+                    <td><a href="{% url 'index' data.id %}">{{data.date}}</a></td>
+                    <td><a href="{% url 'index' data.id %}">{{data.max}}</a></td>
+                    <td><a href="{% url 'index' data.id %}">{{data.min}}</a></td>
+                    <td><a href="{% url 'index' data.id %}">{{data.diff}}</a></td>
+                    <td>
+                        <a href="{% url 'update' data.id %}" class="btn btn-warning">Edit</a>
+                        <form action="{% url 'delete' data.id%}" method="POST" class="d-inline"> {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td></td>
+                    <td>Rata-rata</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            </thead>
+        </table>
+    {% else %}
+        <h4 class="text-center alert alert-warning">No Data Record</h4>
+    {% endif %}
+
+
+    <br><br>
+    <form action={% url 'create' %} class="d-inline form-horizontal"> {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Create">
+    </form>
+
+{% endblock %}

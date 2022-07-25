@@ -8,10 +8,11 @@ from .forms import CreateNewList
 # Create your views here.
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
-    return HttpResponse("<h1>Welcome %s!</h1>" %ls.date)
+    return render(response, "main/index.html", {'ls':ls})
 
 def home(response):
-    return render(response, "main/home.html")
+    datas = ToDoList.objects.all()
+    return render(response, "main/home.html", {"datas": datas})
 
 def create(response):
     if response.method == "POST":
@@ -25,7 +26,7 @@ def create(response):
             t = ToDoList(date=date, max=max, min=min, diff=diff)
             t.save()
         
-        return HttpResponseRedirect("/%s" %t.id)
+        return HttpResponseRedirect("/"+str(t.id))
             
     else:
         form = CreateNewList()
@@ -33,17 +34,17 @@ def create(response):
     return render(response, "main/create.html", {"form":form})
 
 def update(response, id):
+    data = ToDoList.objects.get(id=id)
+    data.diff = data.max - data.min
+    form = CreateNewList(instance=data)
     if response.method == "POST":
-        ls = ToDoList.objects.get(id=id)
-        form = ToDoList(request.POST, instance=ls)
+        form = CreateNewList(response.POST, instance=data)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect("/"+str(data.id))
     
-    else:
-        ls = ToDoList.objects.get(id=id)
-        form = ToDoList(instance=ls)
-    
-    return render(response, "main/update.html", {"form":form})
+    context = {'form': form, 'item': data}
+    return render(response, "main/update.html", context)
 
 def delete(response, id):
     if response.method == "POST":
