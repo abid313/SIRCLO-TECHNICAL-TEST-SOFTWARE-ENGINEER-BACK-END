@@ -1,8 +1,12 @@
-<html>
+<html lang="en">
 <head>
-    <title>Test</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
 </head>
 <body>
-    <p>Base Template</p>
+    <div id="content", name="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>
