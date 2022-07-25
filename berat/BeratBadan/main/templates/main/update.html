@@ -3,9 +3,15 @@
 {% block title %} Update Page {% endblock %}
 
 {% block content %}
-<form method="POST" action="{% url 'update' item.id %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-warning">Update Record</button>
-</form>
+<div id="content", name="content", class="main">
+    <div class="row justify-content-center">
+        <div class="col-4 p-md-5 border border-primary rounded border-5" style="margin-top: 300px; background-color:aliceblue;">
+            <form method="POST" action="{% url 'update' item.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning">Update Record</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

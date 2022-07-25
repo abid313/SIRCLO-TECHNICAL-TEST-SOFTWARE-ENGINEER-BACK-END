@@ -1,9 +1,14 @@
+from audioop import avg
+from curses import tparm
 from operator import is_
+from statistics import mean
 from urllib import request
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList
 from .forms import CreateNewList
+from django.db.models import Avg, Max, Min, Sum
+
 
 # Create your views here.
 def index(response, id):
@@ -12,7 +17,11 @@ def index(response, id):
 
 def home(response):
     datas = ToDoList.objects.all()
-    return render(response, "main/home.html", {"datas": datas})
+    maksAvg = datas.aggregate(Avg('max'))
+    minAvg = datas.aggregate(Avg('min'))
+    diffAvg = datas.aggregate(Avg('diff'))
+    context = {'datas': datas, 'max' : maksAvg['max__avg'], 'min' : minAvg['min__avg'], 'diff' : diffAvg['diff__avg']}
+    return render(response, "main/home.html", context)
 
 def create(response):
     if response.method == "POST":
