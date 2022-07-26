@@ -1,3 +1,5 @@
+from calendar import c
+from subprocess import call
 from items import shelf as SHELF
 import pandas as pd
 
@@ -32,7 +34,14 @@ class Cart:
 			if self._check_quantity(id, quantity):
 				called_item = [item for item in self.shelf if item['id']==id][0]
 				called_item['quantity'] = quantity
-				self.cart_items.append(called_item)
+    
+				if called_item['id'] in [item['id'] for item in self.cart_items]:
+					print("You already have this item in your cart")
+					self.cart_items[self.cart_items.index(called_item)]['quantity'] += quantity
+					# self.cart_items['quantity'] += called_item['quantity']
+				else:
+					self.cart_items.append(called_item)
+					
 				checkout = input("Checkout? (y/n): ")
 				if checkout == 'y':
 					break;
