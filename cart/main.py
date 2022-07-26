@@ -38,7 +38,6 @@ class Cart:
 				if called_item['id'] in [item['id'] for item in self.cart_items]:
 					print("You already have this item in your cart")
 					self.cart_items[self.cart_items.index(called_item)]['quantity'] += quantity
-					# self.cart_items['quantity'] += called_item['quantity']
 				else:
 					self.cart_items.append(called_item)
 					
