@@ -11,9 +11,8 @@
 ![image](https://user-images.githubusercontent.com/69112136/180863764-8688c78b-b5ef-4a00-99ab-853b330fa6df.png)
 
 ## Cart Question
-![image](https://user-images.githubusercontent.com/69112136/180864294-30b06088-01b0-4bbe-8df7-5522da6b81a0.png)
-![image](https://user-images.githubusercontent.com/69112136/180864383-76ce59c0-841c-4be6-ad62-6fb4eb5e7779.png)
-![image](https://user-images.githubusercontent.com/69112136/180864453-f8ff9c58-8627-4315-bc95-27124b421036.png)
+![image](https://user-images.githubusercontent.com/69112136/180928601-f4919f03-3b8c-4f73-be26-94da97bf7f50.png)
+![image](https://user-images.githubusercontent.com/69112136/180928640-7ff321bc-c048-48a6-a695-da5da6f880f3.png)
 
 ## Berat Question
 ![image](https://user-images.githubusercontent.com/69112136/180864711-adcbb198-d29d-4f32-b11b-606e5505bce5.png)
